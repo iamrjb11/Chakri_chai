@@ -82,9 +82,9 @@ include "../resources/views/templates/resourcesFile.php";
 <br><br>
 <div style="float:left">
   <img src="/images/chakri_chai.jpg" style="padding-top:30px;width:90%;padding-left:5%;"><br>
-  <p style="text-align:center;font-size:25px;font-weight:bold;">Think and share whats are your mind ....</>
+ 
 </div>
-<div style="float:right">
+<div style="float:right;padding-right:15%;padding-top:3%">
   
   
   <div class="signupTxt">Log in</div><br>
@@ -95,33 +95,27 @@ include "../resources/views/templates/resourcesFile.php";
     <div class="tab-content">
         <div id="user" class="tab-pane fade in active">
         
-            <form method="post" enctype="multipart/form-data" action="{{ URL::to('/login_user') }}" class="signup_form">
+            <form method="post" enctype="multipart/form-data" action="{{ URL::to('/login_user') }}" class="">
 
             {{ csrf_field() }}
             <input type="text" name="u_email" value="" class="form-control" placeholder="Email" required><br>
             <input type="text" name="u_password" value="" class="form-control" placeholder="Password" required><br>
             
-            <input type="submit" name="" class="btn btn-primary" value="Sign up" style="width:100%;"><br>
+            <input type="submit" name="" class="btn btn-primary" value="Log in" style="width:100%;"><br>
             </form>
         </div>
         <div id="company" class="tab-pane fade">
-            <form method="post" enctype="multipart/form-data" action="{{ URL::to('/login_company') }}" class="signup_form">
+            <form method="post" enctype="multipart/form-data" action="{{ URL::to('/login_company') }}" class="">
 
             {{ csrf_field() }}  
             <input type="text" name="u_email" value="" class="form-control" placeholder="Email" required><br>
             <input type="text" name="u_password" value="" class="form-control" placeholder="Password" required><br>
             
-            <input type="submit" name="" class="btn btn-primary" value="Sign up" style="width:100%;"><br>
+            <input type="submit" name="" class="btn btn-primary" value="Log in" style="width:100%;"><br>
             </form>
         </div>
     </div>
 
-    
-    @if(count($errors)>0)
-    <p style="color:red;padding-top:10px;">* Failed to sing up. Please check all the information.Maximum image size is 2MB.</p>
-    @endif
-    
-  
   </div>
 
 </body>

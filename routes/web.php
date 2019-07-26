@@ -13,11 +13,18 @@
 
 //GET METHODS
 Route::get('/', function () {
+    $host_url=url()->current();
+    //echo $host_url;
+        
+    Session::put('host_name',$host_url);
+    echo Session::get('host_name');
     return view('home');
 });
 Route::get('/singup', function () {
+    echo Session::get('host_name');
     return view('sing_up');
 });
+
 
 //POST METHODS
 Route::post('/login_user','myController@login_user');
