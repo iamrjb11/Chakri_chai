@@ -21,6 +21,7 @@ class CreateJobCircularInfoTable extends Migration
             $table->string('job_salary');
             $table->string('job_location');
             $table->string('job_country');
+            $table->string('deadline');
             
         });
     }

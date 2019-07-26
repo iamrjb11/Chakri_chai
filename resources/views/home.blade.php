@@ -64,17 +64,7 @@ include "../resources/views/templates/resourcesFile.php";
 
     
 <body style="background-color:white;">
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{{Session::get('host_name')}}" style="font-size:200%">Chakri Chai</a>
-    </div>
-    
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{Session::get('host_name')}}/singup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-    </ul>
-  </div>
-</nav>
+<?php include "../resources/views/header.blade.php"; ?> 
 
 @if(count($errors) > 0)
 
@@ -108,10 +98,13 @@ include "../resources/views/templates/resourcesFile.php";
             <form method="post" enctype="multipart/form-data" action="{{ URL::to('/login_company') }}" class="">
 
             {{ csrf_field() }}  
-            <input type="text" name="u_email" value="" class="form-control" placeholder="Email" required><br>
-            <input type="text" name="u_password" value="" class="form-control" placeholder="Password" required><br>
+            <input type="text" name="c_email" value="" class="form-control" placeholder="Email" required><br>
+            <input type="text" name="c_password" value="" class="form-control" placeholder="Password" required><br>
             
             <input type="submit" name="" class="btn btn-primary" value="Log in" style="width:100%;"><br>
+            @if(count($errors)>0)
+            <p style="color:red;padding-top:10px;">* Failed to login. Please check all the information.</p>
+            @endif
             </form>
         </div>
     </div>

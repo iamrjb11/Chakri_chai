@@ -21,6 +21,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         '/signup_company',
-        '/signup_user'
+        '/signup_user',
+        '/create_circular'
     ];
 }

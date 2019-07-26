@@ -14,17 +14,7 @@ include "../resources/views/templates/resourcesFile.php";
 </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{{Session::get('host_name')}}" style="font-size:200%">Chakri Chai</a>
-    </div>
-    
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{Session::get('host_name')}}/singup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-    </ul>
-  </div>
-</nav>
+<?php include "../resources/views/header.blade.php"; ?>
 
 
 <div class="container">
