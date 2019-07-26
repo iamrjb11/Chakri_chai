@@ -33,6 +33,8 @@ Route::get('/rr', function () {
 });
 
 Route::get('/company_panel','myController@company_panel');
+Route::get('/delete_circular/{cir_id}','myController@delete_circular');
+Route::get('/edit_circular/{cir_id}','myController@edit_circular');
 
 
 //POST METHODS

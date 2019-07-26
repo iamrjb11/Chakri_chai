@@ -41,14 +41,19 @@ class myController extends Controller
     }
     public function company_panel(){
         $c_id = Session::get('c_id');
+        
         $c_name = DB::select("select c_name from tbl_company_info where c_id='$c_id' ");
-        //$circulars = DB::select("select * from tbl_circular_info where c_id='$c_id' order by cir_id DESC ");
-        echo "<pre>";
-        $circulars = DB::table('tbl_circular_info')->get();
-       // print_r($circulars);
+        $circulars = DB::select("select * from tbl_circular_info where c_id='$c_id' order by cir_id DESC ");
+        
+        //$data = compact("circulars","c_name");
+        //$data=array('circulars'=>$circulars,'c_name'=>$c_name);
+        //print_r($data);
 
-        //echo $data[0]->c_name;
-        return view('company_panel',['c_name'=>$c_name,'circulars'=>$circulars]);
+        //echo "<br>Name : ".$c_name[0]->c_name;
+        //use array function
+        return view('company_panel',array('circulars'=>$circulars,'c_name'=>$c_name) );
+        //use compact function
+        //return view('company_panel',);
     }
     public function signup_user(Request $request){
         $u_name = $request->input('u_name');
@@ -80,11 +85,18 @@ class myController extends Controller
         $job_description = $request->input('job_description');
         $location = $request->input('location');
         $country = $request->input('country');
+        $deadline = $request->input('deadline');
 
-        DB::insert("insert into tbl_circular_info (c_id,job_title,job_describtion,job_salary,job_location,job_country) values(?,?,?,?,?,?)",[$c_id,$job_title,$job_description,$salary,$location,$country] );
+        DB::insert("insert into tbl_circular_info (c_id,job_title,job_describtion,job_salary,job_location,job_country,deadline) values(?,?,?,?,?,?,?)",[$c_id,$job_title,$job_description,$salary,$location,$country,$deadline] );
         //return back()->with('success','Image Upload successfully');   
         Session::put('header_code','3');
         return redirect('/company_panel');
 
+    }
+    public function delete_circular($cir_id){
+        echo "Delete : ".$cir_id;
+    }
+    public function edit_circular($cir_id){
+        echo "Edit : ".$cir_id;
     }
 }

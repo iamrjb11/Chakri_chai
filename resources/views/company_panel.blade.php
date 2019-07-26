@@ -7,7 +7,7 @@ include "../resources/views/templates/resourcesFile.php";
 <style>
 .company_txt{
     text-align:center;
-    font-size:250%;
+    font-size:200%;
     font-weight:bold;
     padding-left:3%;
 }
@@ -23,7 +23,7 @@ include "../resources/views/templates/resourcesFile.php";
 </head>
 <body style="margin:0;padding:0;">
 <?php include "../resources/views/header.blade.php"; ?>
-<div > <span class="company_txt">Company Name : {{$c_name}}</span>
+<div > <span class="company_txt">Company Name : {{$c_name[0]->c_name}} </span>
 
 <div style="float:left;padding-left:4%;padding-top:1%;padding-right:2%;border-right: 5px solid #9b2;">
 <ul class="nav flex-column">
@@ -35,18 +35,19 @@ include "../resources/views/templates/resourcesFile.php";
 
 
 </div>
-<div style="float:;padding-left:20%">
+<div style="float:left;padding-left:3%">
 <div class="tab-content" >
   <div id="home" class="tab-pane fade in active">
-    <h3>Create a job circular</h3>
-    <form method="post" enctype="multipart/form-data" action="/create_circular" class="form-horizontal col-sm-5"  >
-        <input type="text" class="form-control" name="job_title" placeholder="Job Title"><br>
-        <input type="text" class="form-control" name="salary" placeholder="Salary"><br>
-        <textarea  rows="4" cols="50" class="form-control" name="job_description" placeholder="Job Description"></textarea><br>
-        <textarea  rows="4" cols="50" class="form-control" name="location" placeholder="Location"></textarea><br>
+    <h3>Create a job circular :</h3>
+    <form method="post" enctype="multipart/form-data" action="/create_circular" class="form-horizontal col-sm-14"  >
+        <input type="text" class="form-control" name="job_title" placeholder="Job Title" required><br>
+        <input type="text" class="form-control" name="salary" placeholder="Salary" required><br>
+        <textarea  rows="4" cols="50" class="form-control" name="job_description" placeholder="Job Description" required></textarea><br>
+        <textarea  rows="4" cols="50" class="form-control" name="location" placeholder="Location" required></textarea><br>
         
-        <input type="text" class="form-control" name="country" placeholder="Country"><br>
-        <input type="submit" value="Post" class="btn btn-success" style="width:100%"><br>
+        <input type="text" class="form-control" name="country" placeholder="Country" required><br>
+        <input type="text" class="form-control" name="deadline" placeholder="Deadline" required><br>
+        <input type="submit" value="Post" class="btn btn-success" style="width:100%"><br><br>
     </form>
   </div>
   <div id="menu1" class="tab-pane fade">
@@ -59,20 +60,24 @@ include "../resources/views/templates/resourcesFile.php";
   </div>
 </div>
 </div>
-<div style="float:right;padding-right:4%;">
+<div style="float:right;padding-right:10%;"><h3>Circular Lists :</h3>
     <table class="table table-striped">
         <tr>
-        <th>Job Title</th>
-        <th>Deadline</th>
-        <th>Edit</th>
-        <th>Delete</th>
+          <th>Job Title</th>
+          <th>Deadline</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
 @foreach($circulars as $dt)
         <tr>
-            <td>{{$dt->job_title}}</td>
-            <td>{{$dt->deadline}} </td>
-        <tr>
+          <td>{{$dt->job_title}}</td>
+          <td>{{$dt->deadline}}</td>
+          <td><a href="{{Session::get('host_name')}}/edit_circular/3">Edit</a></td>
+          <td><a href="{{Session::get('host_name')}}/delete_circular/3">Delete</a></td>
+        </tr>
 @endforeach
+       
+
     </table>
 </div>
 </div>
