@@ -17,7 +17,7 @@ include "../resources/views/templates/resourcesFile.php";
 <?php include "../resources/views/header.blade.php"; ?>
 
 
-<div class="container">
+<div class="container" style="padding-left:15%;padding-right:15%">
 <div class="reg_txt">Registration From</div><br>
 <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#user">User</a></li>
@@ -25,7 +25,7 @@ include "../resources/views/templates/resourcesFile.php";
   </ul>
     <div class="tab-content">
         <div id="user" class="tab-pane fade in active">
-            <form method="post" enctype="multipart/form-data" action="/signup_user" class="">
+            <form method="post" enctype="multipart/form-data" action="/signup_user" >
 
             
                 <input type="text" name="u_name" value="" class="form-control" placeholder="Full Name" required><br>

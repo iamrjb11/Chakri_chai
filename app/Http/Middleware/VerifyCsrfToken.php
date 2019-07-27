@@ -22,6 +22,7 @@ class VerifyCsrfToken extends Middleware
         //
         '/signup_company',
         '/signup_user',
-        '/create_circular'
+        '/create_circular',
+        '/update_circular',
     ];
 }

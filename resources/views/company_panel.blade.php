@@ -1,7 +1,7 @@
 
 <?php
-
 include "../resources/views/templates/resourcesFile.php";
+
 ?>
 <head>
 <style>
@@ -39,15 +39,52 @@ include "../resources/views/templates/resourcesFile.php";
 <div class="tab-content" >
   <div id="home" class="tab-pane fade in active">
     <h3>Create a job circular :</h3>
-    <form method="post" enctype="multipart/form-data" action="/create_circular" class="form-horizontal col-sm-14"  >
-        <input type="text" class="form-control" name="job_title" placeholder="Job Title" required><br>
-        <input type="text" class="form-control" name="salary" placeholder="Salary" required><br>
-        <textarea  rows="4" cols="50" class="form-control" name="job_description" placeholder="Job Description" required></textarea><br>
-        <textarea  rows="4" cols="50" class="form-control" name="location" placeholder="Location" required></textarea><br>
+    <form  enctype="multipart/form-data" 
+    @if($cir_id > 0)
+    method="get"
+    action="/update_circular/{{$cir_id}}" 
+    @else
+    method="post"
+    action="/create_circular"
+    @endif
+     class="form-horizontal col-sm-14"  >
+        <input type="text" class="form-control" name="job_title" placeholder="Job Title" required
+        @if($cir_id > 0)
+        value="{{$edit_data[0]->job_title}}"
+        @endif
         
-        <input type="text" class="form-control" name="country" placeholder="Country" required><br>
-        <input type="text" class="form-control" name="deadline" placeholder="Deadline" required><br>
-        <input type="submit" value="Post" class="btn btn-success" style="width:100%"><br><br>
+        ><br>
+        <input type="text" class="form-control" name="salary" placeholder="Salary" required
+        @if($cir_id > 0)
+        value="{{$edit_data[0]->job_salary}}"
+        @endif
+        ><br>
+        <textarea  rows="4" cols="50" class="form-control" name="job_description"
+         placeholder="Job Description" required>@if($cir_id > 0){{$edit_data[0]->job_description}}
+        @endif</textarea><br>
+        <textarea  rows="4" cols="50" class="form-control" name="location" 
+        placeholder="Location" required>@if($cir_id > 0){{$edit_data[0]->job_location}}
+        @endif
+        </textarea><br>
+        
+        <input type="text" class="form-control" name="country" placeholder="Country" required
+        @if($cir_id > 0)
+        value="{{$edit_data[0]->job_country}}"
+        @endif
+        ><br>
+        <input type="text" class="form-control" name="deadline" placeholder="Deadline" required
+        @if($cir_id > 0)
+        value="{{$edit_data[0]->deadline}}"
+        @endif
+        ><br>
+        
+        <input type="submit" 
+        @if($cir_id > 0)
+        value="Update" 
+        @else
+        Value="Post"
+        @endif 
+        class="btn btn-success" style="width:100%"><br><br>
     </form>
   </div>
   <div id="menu1" class="tab-pane fade">
@@ -72,7 +109,7 @@ include "../resources/views/templates/resourcesFile.php";
         <tr>
           <td>{{$dt->job_title}}</td>
           <td>{{$dt->deadline}}</td>
-          <td><a href="{{Session::get('host_name')}}/edit_circular/3">Edit</a></td>
+          <td><a href="{{Session::get('host_name')}}/edit_circular/{{$dt->cir_id}}">Edit</a></td>
           <td><a href="{{Session::get('host_name')}}/delete_circular/3">Delete</a></td>
         </tr>
 @endforeach

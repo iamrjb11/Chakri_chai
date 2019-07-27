@@ -17,7 +17,7 @@ class CreateJobCircularInfoTable extends Migration
             $table->bigIncrements('cir_id');
             $table->integer('c_id');
             $table->string('job_title');
-            $table->string('job_describtion');
+            $table->string('job_description');
             $table->string('job_salary');
             $table->string('job_location');
             $table->string('job_country');

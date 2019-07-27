@@ -1,0 +1,16 @@
+install laravel:
+
+start project : php artisan serve
+create auth : php artisan make:auth  //authentiation user
+create controller : php artisan make:controller myController
+create migration : php artisan make:migration create_role_table  //create db schema
+create seed : php artisan make:seed RolesTableSeeder  //insert data to db
+create model : php artisan make:model Role 
+create model and migration : php artisan make:model Role -m
+create middleware : php artisan make:middleware AccessAdmin
+
+
+make migrate : php artisan migrate
+make seed : php artisan db:seed
+
+clear cache : php artisan cache:clear
