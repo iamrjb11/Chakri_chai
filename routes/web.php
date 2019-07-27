@@ -23,13 +23,13 @@ Route::get('/admin',function(){
 //     Session::put('header_code','1');
 //     return view('home');
 // });
-Route::get('/w','myController@home');
+Route::get('/','myController@home');
 Route::get('/signup', function () {
     //echo Session::get('host_name');
     Session::put('header_code','2');
     return view('sing_up');
 });
-Route::get('/', function () {
+Route::get('/r', function () {
     //echo Session::get('host_name');
     Session::put('header_code','3');
     return view('welcome');

@@ -87,7 +87,23 @@ include "../resources/views/templates/resourcesFile.php";
 <?php
 include "../resources/views/templates/image_slide.php"; ?> 
 </div>
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        rr <span class="caret"></span>
+    </a>
 
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </div>
+</li>
 <div class="container">
 <h2>Find your right job</h2>
   <table class="table table-striped">
