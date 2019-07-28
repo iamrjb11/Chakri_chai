@@ -34,11 +34,10 @@ Route::get('/r', function () {
     Session::put('header_code','3');
     return view('welcome');
 });
-Route::get('/actBook/{array2}', 'myController@actBook')->name('actBook12');
-Route::get('/company_panel','myController@company_panel');
+Route::post('/panel','myController@company_panel');
 Route::get('/delete_circular/{cir_id}','myController@delete_circular');
 Route::get('/edit_circular/{cir_id}','myController@edit_circular');
-Route::get('/circular_details/{cir_id}','myController@circular_details')->middleware(['auth','auth.admin']);;
+Route::get('/circular_details/{cir_id}','myController@circular_details')->middleware('auth');;
 
 
 //POST METHODS

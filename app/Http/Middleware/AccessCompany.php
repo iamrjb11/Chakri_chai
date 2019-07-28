@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-use Auth;
+
 use Closure;
 
-class AccessAdmin
+class AccessCompany
 {
     /**
      * Handle an incoming request.
@@ -15,16 +15,12 @@ class AccessAdmin
      */
     public function handle($request, Closure $next)
     {
-        // if(Auth::user()->hasAnyRole('admin')){
-        //     return $next($request);
-        // }
-        if(Auth::user()->hasAnyRoles(['admin'])){
+        if(Auth::user()->hasAnyRoles(['company'])){
             return $next($request);
         }
         else{
             return redirect('home');
             //abort(403, 'Unauthorized action.');
         }
-        
     }
 }

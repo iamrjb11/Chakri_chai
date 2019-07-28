@@ -62,6 +62,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/panel"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('panel-form').submit();">
+                                        Panel
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -69,6 +74,9 @@
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="panel-form" action="/panel" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
