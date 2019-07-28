@@ -1,23 +1,7 @@
+@extends('layouts.app')
 
-<?php
+@section('content')
 
-include "../resources/views/templates/resourcesFile.php";
-?>
-<head>
-<title>Sign up</title>
-<style>
-.reg_txt{
-    font-size:200%;
-    color:black;
-    font-weight:bold;
-}
-.pad{
-    padding-left:1%;
-}
-</style>
-</head>
-<body>
-<?php include "../resources/views/header.blade.php"; ?>
 <div class="container">
     <h2 style="color:green;font-weight:bold">{{$details[0]->job_title}}</h2>
     <h3>{{$details[0]->c_name}}</h3><br>
@@ -43,9 +27,4 @@ include "../resources/views/templates/resourcesFile.php";
 
 
 
-
-
-
-<?php include "../resources/views/footer.blade.php"; ?>
-
-</body>
+@endsection

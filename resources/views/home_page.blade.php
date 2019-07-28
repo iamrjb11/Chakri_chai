@@ -1,109 +1,12 @@
-<?php
+@extends('layouts.app')
 
-include "../resources/views/templates/resourcesFile.php";
-// if(count($errors)>0){
-//   Session::put('msg_overlap_pblm',1);
-//   Session::put('msg_code',"fail");
-//   Session::put('msg_text',"Failed to sing up !");
-//   blogController::reloadME();
-// }
-?>
+@section('content')
 
-<head>
-  <style>
-  .box{
-    margin: auto;
-    float:right;
-    position:auto;
-    padding-right:6%;
-    padding-left:2%;
-    padding-top:1%;
-    padding-bottom:5%;
-    width:150%;
-    border-left: 5px solid #9b2;
-    box-shadow: 0 0 20px rgba(0,0,0,.15);
-    background-color:#b6ccef;
-  }
-  .signup_form{
-    padding-left:3%;
-    padding-right:3%;
-    float:right;
-    
-  }
-  .signupTxt{
-    border-bottom: 2px solid black;
-    font-size:30px;
-    font-weight:bold;
-    color:#138906;
-  }
-  @media only screen and (max-width: 700px){
-    .box{
-      margin: auto;
-      position:auto;
-      padding-left:2%;
-      padding-top:1%;
-      padding-bottom:3%;
-      width:100%;
-      border-left: 5px solid #9b2;
-      border-right: 5px solid #9b2;
-      box-shadow: 0 0 20px rgba(0,0,0,.15);
-      
-    }
-    .signup_form{
-      float:none;
-      width:100%;
-    }
-    .web_name{
-      width:100%;
-      padding-left:20%;
-    }
-  } 
-  </style>  
-  <script>
-  $(document).ready(function($) {
-    $(".clickable-row").on({
-
-      click: function() {
-        window.location = $(this).data("href");
-    },
-    mouseenter: function(){
-      $(this).css({"background-color": "lightgray", "font-size": "200%"});
-    },
-    mouseleave: function(){
-      $(this).css({"background-color": "", "font-size": "150%"});
-    }
-
-    })
-});
-  
-  </script>
-</head>
-
-
-    
-<body style="background-color:white;">
-<?php include "../resources/views/header.blade.php"; ?>
 <div style="text-align:center;"> 
 <?php
 include "../resources/views/templates/image_slide.php"; ?> 
 </div>
-<li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        rr <span class="caret"></span>
-    </a>
 
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
-        </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-    </div>
-</li>
 <div class="container">
 <h2>Find your right job</h2>
   <table class="table table-striped">
@@ -186,6 +89,5 @@ include "../resources/views/templates/image_slide.php"; ?>
     </div>
   </div><br><br>
 
-  <?php include "../resources/views/footer.blade.php"; ?>
 
-</body>
+@endsection

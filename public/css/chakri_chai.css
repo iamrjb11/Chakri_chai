@@ -1,0 +1,31 @@
+
+
+
+
+/* start->image_slide */
+mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+img {
+  width:140%;
+  display:block;
+}
+/* end->image_slide */
+
+/* start->circular_details_page */
+
+.pad{
+    padding-left:1%;
+}
+/* end->circular_details_page */
+
+/* start->footer */
+.footer{
+    color:white;
+    background-color:black;
+    width:100%;
+    text-align:center;
+    padding-top:5%;
+    padding-bottom:5%;
+}
+/* end->footer */
