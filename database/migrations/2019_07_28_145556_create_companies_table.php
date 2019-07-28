@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompanyInfoTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCompanyInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_company_info', function (Blueprint $table) {
-            $table->bigIncrements('c_id');
-            $table->string('c_name');
-            $table->integer('u_id')->unsigned;
-            
+        Schema::create('companies', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateCompanyInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_company_info');
+        Schema::dropIfExists('companies');
     }
 }

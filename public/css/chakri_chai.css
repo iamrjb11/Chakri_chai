@@ -29,3 +29,24 @@ img {
     padding-bottom:5%;
 }
 /* end->footer */
+
+/* start->company_panel_page */
+.company_txt{
+  text-align:center;
+  font-size:200%;
+  font-weight:bold;
+  padding-left:3%;
+}
+
+.atag{
+  font-size:130%;
+  color:black;
+}
+/* end->company_panel_page */
+
+.regestn{
+  text-align: center;
+  padding-top: 2%;
+  font-weight: bold;
+  font-size: 120%;
+}

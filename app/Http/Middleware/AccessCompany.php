@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Auth;
 class AccessCompany
 {
     /**
@@ -15,11 +15,12 @@ class AccessCompany
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->hasAnyRoles(['company'])){
+        
+        if(Auth::user()->hasAnyRole('company')){
             return $next($request);
         }
         else{
-            return redirect('home');
+            return redirect('/');
             //abort(403, 'Unauthorized action.');
         }
     }

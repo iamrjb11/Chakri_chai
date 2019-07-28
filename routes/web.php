@@ -34,10 +34,14 @@ Route::get('/r', function () {
     Session::put('header_code','3');
     return view('welcome');
 });
-Route::post('/panel','myController@company_panel');
+Route::post('/panel','myController@company_panel')->middleware(['auth','auth.company']);;
+
+Route::get('/panel','myController@company_panel')->middleware(['auth','auth.company']);;
+Route::get('/user_panel','myController@user_panel')->middleware('auth');;
+
 Route::get('/delete_circular/{cir_id}','myController@delete_circular');
 Route::get('/edit_circular/{cir_id}','myController@edit_circular');
-Route::get('/circular_details/{cir_id}','myController@circular_details')->middleware('auth');;
+Route::get('/circular_details/{cir_id}','myController@circular_details')->middleware('auth');
 
 
 //POST METHODS

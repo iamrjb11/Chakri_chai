@@ -1,37 +1,19 @@
+@extends('layouts.app')
 
-<?php
-include "../resources/views/templates/resourcesFile.php";
 
-?>
-<head>
-<style>
-.company_txt{
-    text-align:center;
-    font-size:200%;
-    font-weight:bold;
-    padding-left:3%;
-}
-.box{
-    padding-left:3%;
-    padding-right:3%;
-}
-.atag{
-    font-size:130%;
-    color:black;
-}
-</style>
-</head>
-<body style="margin:0;padding:0;">
-<?php include "../resources/views/header.blade.php"; ?>
-<div > <span class="company_txt">Company Name : {{$c_name[0]->c_name}} </span>
+@section('content')
+<div>
+<div > <span class="company_txt">Company Name : {{$c_name[0]->name}} </span>
 
 <div style="float:left;padding-left:4%;padding-top:1%;padding-right:2%;border-right: 5px solid #9b2;">
 <ul class="nav flex-column">
-  <li class="active"><a  class="atag" data-toggle="pill" href="#home">Post Circular</a></li>
+  <li class="active" ><a  id="cl" class="atag" data-toggle="pill" href="#home">Post Circular</a></li>
   <li><a class="atag"  data-toggle="pill" href="{{Session::get('host_name')}}">Applicants List</a></li>
   <li><a  class="atag" data-toggle="pill" href="#menu2"></a></li>
 </ul>
 </div><br>
+<p onload="clickAtag">
+</p>
 
 
 </div>
@@ -118,5 +100,6 @@ include "../resources/views/templates/resourcesFile.php";
     </table>
 </div>
 </div>
+</div>
 
-</body>
+@endsection

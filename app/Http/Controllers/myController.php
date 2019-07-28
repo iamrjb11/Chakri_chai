@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // to use Database (DB::select("query"))
 use Illuminate\Support\Facades\Input; //to use this Input::get('tag')
 use Illuminate\Support\Facades\Redirect; // to use this Redirect::to('url')
-
+use Auth;
 class myController extends Controller
 
 {
@@ -18,7 +18,7 @@ class myController extends Controller
         Session::put('host_name',$host_url);
         //echo Session::get('host_name');
         Session::put('header_code','1');
-        $circulars = DB::select("select * from tbl_circular_info inner join tbl_company_info on tbl_circular_info.c_id=tbl_company_info.c_id  order by cir_id DESC ");
+        $circulars = DB::select("select * from tbl_circular_info inner join companies on tbl_circular_info.c_id=companies.id  order by cir_id DESC ");
         //echo"<pre>";
         //print_r($circulars);
         return view('home_page',array('circulars'=>$circulars));
@@ -63,9 +63,16 @@ class myController extends Controller
         return array('c_name'=>$c_name,'circulars'=>$circulars);
     }
     public function company_panel(){
-        $c_id = Session::get('c_id');
         
-        $c_name = DB::select("select c_name from tbl_company_info where c_id='$c_id' ");
+        $u_id = Auth::user()->id;
+        //echo Auth::user()->fullname;
+        $c_id =  DB::select("select c_id from users where id='$u_id' ");
+        $c_id = $c_id[0]->c_id;
+        // $c_id = Session::get('c_id');
+        //$c_id = $c_details[0]->c_id;
+        
+        
+        $c_name = DB::select("select name from companies where id='$c_id' ");
         $circulars = DB::select("select * from tbl_circular_info where c_id='$c_id' order by cir_id DESC ");
         
         //$data = compact("circulars","c_name");
@@ -79,6 +86,33 @@ class myController extends Controller
         //use compact function
         //return view('company_panel',);
     }
+    public function user_panel(){
+        
+        $u_id = Auth::user()->id;
+        $u_name = Auth::user()->fullname;
+        //echo Auth::user()->fullname;
+        // $c_id =  DB::select("select c_id from users where id='$u_id' ");
+        // $c_id = $c_id[0]->c_id;
+        // // $c_id = Session::get('c_id');
+        // //$c_id = $c_details[0]->c_id;
+        
+        
+        // $c_name = DB::select("select name from companies where id='$c_id' ");
+        // $circulars = DB::select("select * from tbl_circular_info where c_id='$c_id' order by cir_id DESC ");
+        
+        //$data = compact("circulars","c_name");
+        //$data=array('circulars'=>$circulars,'c_name'=>$c_name);
+        //print_r($data);
+
+        //echo "<br>Name : ".$c_name[0]->c_name;
+        //use array function
+        //echo gettype($circulars);
+        //return view('company_panel',array('cir_id'=>0,'circulars'=>$circulars,'c_name'=>$c_name) );
+        return view('user_panel',array('u_name'=>$u_name) );
+        //use compact function
+        //return view('company_panel',);
+    }
+    
     public function signup_user(Request $request){
         $u_name = $request->input('u_name');
         $u_email = $request->input('u_email');
@@ -94,13 +128,28 @@ class myController extends Controller
         
 
         $c_name = $request->input('c_name');
-        $c_email = $request->input('c_email');
-        $c_password = $request->input('c_password');
+        $u_email = $request->input('u_email');
+        $u_password = $request->input('u_password');
+        //echo $c_name."<br> ".$u_email."<br> ".$u_password;
 
-        DB::insert("insert into tbl_company_info (c_name,c_email,c_password) values(?,?,?)",[$c_name,$c_email,$c_password] );
-        //return back()->with('success','Image Upload successfully');   
-        Session::put('header_code','1');
-        return view('home_page');
+        DB::insert("insert into companies (name) values('$c_name') ");
+        $c_id = DB::select("select id from companies where name='$c_name' ");
+        $c_id = $c_id[0]->id;
+
+        
+        $u_id = DB::select("select id from users where email='$u_email' ");
+        if($u_id){
+            $u_id = $u_id[0]->id;
+            DB::update("update users set c_id=? where id=? ",[$c_id,$u_id]);
+            DB::update("update role_user set role_id='2' where user_id=? ",[$u_id]);
+            
+            //return back()->with('success','Image Upload successfully');   
+            
+            return redirect('/register');
+        }
+        else {
+            return "Error!";
+        }
     }
     public function create_circular(Request $request){
         $c_id = Session::get('c_id');
@@ -122,11 +171,12 @@ class myController extends Controller
     }
    
     public function edit_circular($cir_id){ 
-        //echo "COOL : ".$array;
-        //echo "Edit : ".$cir_id;
-        $c_id = Session::get('c_id');
+        $u_id = Auth::user()->id;
+        //echo Auth::user()->fullname;
+        $c_id =  DB::select("select c_id from users where id='$u_id' ");
+        $c_id = $c_id[0]->c_id;
         
-        $c_name = DB::select("select c_name from tbl_company_info where c_id='$c_id' ");
+        $c_name = DB::select("select name from companies where id='$c_id' ");
         $circulars = DB::select("select * from tbl_circular_info where c_id='$c_id' order by cir_id DESC ");
         $edit_data = DB::select("select * from tbl_circular_info where cir_id='$cir_id'  ");
         return view('company_panel',array('cir_id'=>$cir_id,'circulars'=>$circulars,'c_name'=>$c_name,'edit_data'=>$edit_data ) );  ;
@@ -149,7 +199,7 @@ class myController extends Controller
         DB::update("update  tbl_circular_info set job_title=?,job_description=?,job_salary=?,job_location=?,job_country=?,deadline=? where cir_id=?",[$job_title,$job_description,$salary,$location,$country,$deadline,$cir_id] );
         //return back()->with('success','Image Upload successfully');   
         Session::put('header_code','3');
-        return redirect('/company_panel');
+        return redirect('/panel');
 
 
     }
