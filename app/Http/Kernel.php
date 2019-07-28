@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'auth.admin'=>\App\Http\Middleware\AccessAdmin::class,
         'auth.company'=>\App\Http\Middleware\AccessCompany::class,
         'auth.user'=>\App\Http\Middleware\AccessUser::class,
+        'auth.apply'=>\App\Http\Middleware\AccessApply::class,
     ];
 
     /**

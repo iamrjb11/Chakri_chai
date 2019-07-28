@@ -14,3 +14,4 @@ make migrate : php artisan migrate
 make seed : php artisan db:seed
 
 clear cache : php artisan cache:clear
+link up public folder to storage : php artisan storage:link //The [public/storage] directory has been linked.

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-class AccessCompany
+class AccessApply
 {
     /**
      * Handle an incoming request.
@@ -15,13 +15,10 @@ class AccessCompany
      */
     public function handle($request, Closure $next)
     {
-        
-        if(Auth::user()->hasAnyRole('company')){
+        if(Auth::user()->filename){
+            
             return $next($request);
         }
-        else{
-            return redirect('/user_panel');
-            //abort(403, 'Unauthorized action.');
-        }
+        return redirect('/user_panel');
     }
 }

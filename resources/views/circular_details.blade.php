@@ -3,8 +3,8 @@
 @section('content')
 
 <div class="container">
-    <h2 style="color:green;font-weight:bold">{{$details[0]->job_title}}</h2>
-    <h3>{{$details[0]->c_name}}</h3><br>
+    <h2 style="color:#050aff;font-weight:bold">{{$details[0]->job_title}}</h2>
+    <h4 style="color:green;font-weight:bold">{{$details[0]->name}}</h4><br>
 
     <h3>Job Description</h3>
     <?php $details[0]->job_description = nl2br($details[0]->job_description) ?> 
@@ -20,9 +20,13 @@
     <h3>Salary</h3> 
     <div class="pad">{{ $details[0]->job_salary }}</div><br><br>
     
-    <a href="{{Session::get('host_name')}}/apply/{{$details[0]->cir_id}}/{{$details[0]->cir_id}}"
-     class="btn btn-primary">Apply Online</a><br>
-    <h4 style="color:red;"> Deadline : {{ $details[0]->deadline }}</h4><br>
+    @if($apply_sts === "no")
+    <a href="{{Session::get('host_name')}}/apply/{{$details[0]->cir_id}}"
+     class="btn btn-primary">Apply Online</a>
+     @else
+     <h3 style="color:green;font-weight:bold;">Applied Successfully</h3>
+     @endif
+     <br><h4 style="color:red;"> Deadline : {{ $details[0]->deadline }}</h4><br>
 </div>
 
 

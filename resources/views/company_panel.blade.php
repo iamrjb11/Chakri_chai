@@ -2,14 +2,15 @@
 
 
 @section('content')
+<div style="text-align:center;"> <span class="company_txt">Company Name : {{$c_name[0]->name}} </span>
 <div>
-<div > <span class="company_txt">Company Name : {{$c_name[0]->name}} </span>
 
-<div style="float:left;padding-left:4%;padding-top:1%;padding-right:2%;border-right: 5px solid #9b2;">
+<div class="panel_side_menu">
 <ul class="nav flex-column">
   <li class="active" ><a  id="cl" class="atag" data-toggle="pill" href="#home">Post Circular</a></li>
   <li><a class="atag"  data-toggle="pill" href="{{Session::get('host_name')}}">Applicants List</a></li>
-  <li><a  class="atag" data-toggle="pill" href="#menu2"></a></li>
+  <li><a class="atag"   href="{{Session::get('host_name')}}/user_panel">User Panel</a></li>
+  
 </ul>
 </div><br>
 <p onload="clickAtag">

@@ -42,9 +42,11 @@ Route::get('/user_panel','myController@user_panel')->middleware('auth');;
 Route::get('/delete_circular/{cir_id}','myController@delete_circular');
 Route::get('/edit_circular/{cir_id}','myController@edit_circular');
 Route::get('/circular_details/{cir_id}','myController@circular_details')->middleware('auth');
+Route::get('/apply/{cir_id}','myController@apply')->middleware('auth.apply');
 
 
 //POST METHODS
+Route::post('/upload_cv','myController@upload_cv');
 Route::post('/login_user','myController@login_user');
 Route::post('/login_company','myController@login_company');
 

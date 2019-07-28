@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\User;
+
+
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // to use Database (DB::select("query"))
 use Illuminate\Support\Facades\Input; //to use this Input::get('tag')
 use Illuminate\Support\Facades\Redirect; // to use this Redirect::to('url')
+use App\Application;
 use Auth;
 class myController extends Controller
 
@@ -23,8 +27,17 @@ class myController extends Controller
         //print_r($circulars);
         return view('home_page',array('circulars'=>$circulars));
     }
-    public function login_user(Request $request){
+    public function upload_cv(Request $request){
+        $u_id = Auth::user()->id;
+        if( $file = $request->file('my_cv') ){
+            $file_name = $file->getClientOriginalName();
+            $file->storeAs('public/my_cv_folder',$file_name);
 
+            DB::update("update users set filename='$file_name' where id='$u_id' ");
+            
+            return redirect('/user_panel');
+        }
+        
 
     }
     public function login_company(Request $request){
@@ -108,7 +121,9 @@ class myController extends Controller
         //use array function
         //echo gettype($circulars);
         //return view('company_panel',array('cir_id'=>0,'circulars'=>$circulars,'c_name'=>$c_name) );
-        return view('user_panel',array('u_name'=>$u_name) );
+        $file_name = DB::select("select filename from users where id='$u_id' ");
+        $file = $file_name[0]->filename;
+        return view('user_panel',array('u_name'=>$u_name,'file'=>$file) );
         //use compact function
         //return view('company_panel',);
     }
@@ -205,9 +220,28 @@ class myController extends Controller
     }
     public function circular_details($cir_id){
         //echo $cir_id;
-        $details = DB::select("select * from tbl_circular_info left join tbl_company_info on tbl_circular_info.c_id=tbl_company_info.c_id where tbl_circular_info.cir_id='$cir_id' ");
+        
+        $u_id = Auth::user()->id;
 
+        $details = DB::select("select * from tbl_circular_info left join companies on tbl_circular_info.c_id=companies.id where tbl_circular_info.cir_id='$cir_id' ");
+        
+        $check = DB::select("select * from applications where cir_id=? and u_id=?",[$cir_id,$u_id]);
+        if($check)
+            $sts = "yes";
+        else
+            $sts = "no";
+        //echo $sts;
 
-        return view('circular_details',array('details'=>$details));
+        return view('circular_details',array('details'=>$details,'apply_sts'=>$sts));
+    }
+    public function apply($cir_id){
+        //echo "cir id : ".$cir_id;
+        
+        $u_id = Auth::user()->id;
+        $apply = new Application;
+        $apply->cir_id = $cir_id;
+        $apply->u_id = $u_id;
+        $apply->save();
+        return redirect()->back();
     }
 }

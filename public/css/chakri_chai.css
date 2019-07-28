@@ -50,3 +50,14 @@ img {
   font-weight: bold;
   font-size: 120%;
 }
+
+/* end->panel_side_menu */
+.panel_side_menu{
+  float:left;
+  padding-left:4%;
+  padding-top:4%;
+  padding-bottom:4%;
+  padding-right:2%;
+  border-right: 5px solid #9b2;
+}
+/* end->panel_side_menu */
