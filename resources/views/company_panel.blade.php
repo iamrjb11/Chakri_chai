@@ -78,14 +78,20 @@
           <th>Job Title</th>
           <th>Deadline</th>
           <th>Edit</th>
-          <th>Delete</th>
+          <th>Visibility</th>
         </tr>
 @foreach($circulars as $dt)
         <tr>
           <td>{{$dt->job_title}}</td>
           <td>{{$dt->deadline}}</td>
           <td><a href="{{Session::get('host_name')}}/edit_circular/{{$dt->id}}">Edit</a></td>
-          <td><a href="{{Session::get('host_name')}}/delete_circular/3">Delete</a></td>
+          <td><a href="{{Session::get('host_name')}}/visibility/{{$dt->id}}/{{$dt->visibility}}">
+          @if($dt->visibility == 1)
+          ON
+          @else
+          OFF
+          @endif
+          </a></td>
         </tr>
 @endforeach
        

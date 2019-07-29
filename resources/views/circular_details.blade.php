@@ -21,7 +21,7 @@
     <div class="pad">{{ $details[0]->job_salary }}</div><br><br>
     
     @if($apply_sts === "no")
-    <a href="{{Session::get('host_name')}}/apply/{{$details[0]->cir_id}}"
+    <a href="{{Session::get('host_name')}}/apply/{{$details[0]->c_id}}/{{$details[0]->cir_id}}"
      class="btn btn-primary">Apply Online</a>
      @else
      <h3 style="color:green;font-weight:bold;">Applied Successfully</h3>

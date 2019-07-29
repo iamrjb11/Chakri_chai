@@ -38,7 +38,7 @@ class HomeController extends Controller
         Session::put('host_name',$host_url);
         //echo Session::get('host_name');
         Session::put('header_code','1');
-        $circulars = DB::select("select circulars.id as cir_id,name,job_title,job_location,deadline from circulars inner join companies on circulars.c_id=companies.id  order by circulars.id DESC ");
+        $circulars = DB::select("select circulars.id as cir_id,companies.id as c_id,name,job_title,job_location,deadline from circulars inner join companies on circulars.c_id=companies.id where visibility='1' order by circulars.id DESC ");
         //$circulars=null;
         //echo"<pre>";
         //print_r($circulars);

@@ -38,8 +38,12 @@ class CircularController extends Controller
         return redirect('/company_panel');
 
     }
-    public function delete_circular($cir_id){
-        echo "Delete : ".$cir_id;
+    public function visibility_circular($cir_id,$show_sts){
+        if($show_sts == 1)
+            DB::update("update circulars set visibility='0' where id='$cir_id'  ");
+        else
+            DB::update("update circulars set visibility='1' where id='$cir_id'  ");
+        return redirect('/company_panel');
     }
    
     public function edit_circular($cir_id){ 
@@ -51,7 +55,9 @@ class CircularController extends Controller
         $c_name = DB::select("select name from companies where id='$c_id' ");
         $circulars = DB::select("select * from circulars where c_id='$c_id' order by id DESC ");
         $edit_data = DB::select("select * from circulars where id='$cir_id'  ");
-        return view('company_panel',array('cir_id'=>$cir_id,'circulars'=>$circulars,'c_name'=>$c_name,'edit_data'=>$edit_data ) );  ;
+        $applications = DB::select("SELECT job_title,deadline,cir_id,COUNT(cir_id) as numOf FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='$c_id' GROUP BY cir_id");
+        
+        return view('company_panel',array('circular_id'=>$cir_id,'circulars'=>$circulars,'c_name'=>$c_name,'edit_data'=>$edit_data,'applications'=>$applications ) );  ;
         // foreach ($array as $arr) {
         //     echo $arr."  ";
         // }
@@ -80,7 +86,7 @@ class CircularController extends Controller
         
         $u_id = Auth::user()->id;
 
-        $details = DB::select("select circulars.id as cir_id,job_title,name,job_description,job_location,job_country,job_salary,deadline from circulars left join companies on circulars.c_id=companies.id where circulars.id='$cir_id' ");
+        $details = DB::select("select circulars.id as cir_id,companies.id as c_id,job_title,name,job_description,job_location,job_country,job_salary,deadline from circulars left join companies on circulars.c_id=companies.id where circulars.id='$cir_id' ");
         
         $check = DB::select("select * from applications where cir_id=? and u_id=?",[$cir_id,$u_id]);
         if($check)

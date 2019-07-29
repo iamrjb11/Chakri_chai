@@ -51,7 +51,7 @@ class CompanyController extends Controller
         //use compact function
         //return view('company_panel',);
     }
-    public function signup_company(Request $request){
+    public function create_company(Request $request){
         
 
         $c_name = $request->input('c_name');

@@ -27,6 +27,7 @@ Route::get('/admin',function(){
 Route::get('/','HomeController@index');
 
 //CompanyController
+Route::post('/create_company','CompanyController@create_company');
 Route::post('/company_panel','CompanyController@company_panel')->middleware(['auth','auth.company']);
 Route::get('/company_panel','CompanyController@company_panel')->middleware(['auth','auth.company']);
 
@@ -37,12 +38,12 @@ Route::post('/upload_cv','myController@upload_cv')->name('upload'); //name means
 //CircularController
 Route::post('/create_circular','CircularController@create_circular');
 Route::get('/update_circular/{cir_id}','CircularController@update_circular');
-Route::get('/delete_circular/{cir_id}','CircularController@delete_circular');
+Route::get('/visibility/{cir_id}/{show_sts}','CircularController@visibility_circular');
 Route::get('/edit_circular/{cir_id}','CircularController@edit_circular');
 Route::get('/circular_details/{cir_id}','CircularController@circular_details')->middleware('auth');
 
 //ApplicationController
-Route::get('/apply/{cir_id}','ApplicationController@apply')->middleware('auth.apply');
+Route::get('/apply/{c_id}/{cir_id}','ApplicationController@apply')->middleware('auth.apply');
 Route::get('/applicants_details/{cir_id}/{c_name}/{j_title}','ApplicationController@applicants_details')->middleware('auth');
 
 
@@ -50,8 +51,7 @@ Route::get('/applicants_details/{cir_id}/{c_name}/{j_title}','ApplicationControl
 Route::post('/login_user','myController@login_user');
 Route::post('/login_company','myController@login_company');
 
-Route::post('/signup_user','myController@signup_user');
-Route::post('/signup_company','myController@signup_company');
+// Route::post('/signup_user','myController@signup_user');
 
 
 Auth::routes();

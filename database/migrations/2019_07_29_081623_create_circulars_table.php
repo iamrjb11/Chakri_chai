@@ -22,6 +22,7 @@ class CreateCircularsTable extends Migration
             $table->string('job_location');
             $table->string('job_country');
             $table->string('deadline');
+            $table->integer('visibility')->unsigned;
             $table->timestamps();
         });
     }

@@ -21,11 +21,12 @@ class ApplicationController extends Controller
     {
         
     }
-    public function apply($cir_id){
+    public function apply($c_id,$cir_id){
         //echo "cir id : ".$cir_id;
         
         $u_id = Auth::user()->id;
         $apply = new Application;
+        $apply->c_id = $c_id;
         $apply->cir_id = $cir_id;
         $apply->u_id = $u_id;
         $apply->save();

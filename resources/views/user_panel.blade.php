@@ -2,18 +2,19 @@
 
 
 @section('content')
-<div style="text-align:center"> <span class="company_txt">Name : {{$u_name}} </span>
+
 <div>
 
-
+<div style="text-align:"> <span class="company_txt">Name : {{$u_name}} </span>
 <div class="panel_side_menu">
 <ul class="nav flex-column">
   <li class="active" ><a  id="cl" class="atag" data-toggle="pill" href="#home">Upload CV</a></li>
-  <li><a class="atag"  data-toggle="pill" href="#edit">Edit Profile</a></li
+  
 
   @if(Auth::user()->c_id)
   <li><a  class="atag"  href="{{Session::get('host_name')}}/company_panel">Company Panel</a></li>
   @else
+  <li><a class="atag"  data-toggle="pill" href="#create_company">Create Company</a></li>
   @endif
 </ul>
 </div><br>
@@ -29,7 +30,7 @@
       <h3>Upload your new CV :</h3>
       <form method="post" action="{{ route('upload') }}" enctype="multipart/form-data">
       @csrf
-        <input type="file" class="form-control" name="my_cv">
+        <input type="file" class="form-control" name="my_cv" required>
         <input type="submit" class="btn btn-success" value="Upload" style="width:100%">
       </form>
     </div>
@@ -45,9 +46,15 @@
   </div>
 
 </div>
-<div id="edit" class="tab-pane fade">
-  <h3>Edit Personal Infromation</h3>
-  <p>Some content in edit.</p>
+<div id="create_company" class="tab-pane fade">
+<div style="float:left;padding-left:23%">
+  <h3>Create your own Company</h3>
+  <form action="/create_company" method="post">
+    <input type="text" class="form-control" placeholder="Company Name">
+    <input type="submit" class="btn btn-success" value="Create" style="width:100%">
+  </form>
+  </div>
+  
 </div>
   
 
