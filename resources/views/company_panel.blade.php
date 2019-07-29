@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div style="text-align:center;"> <span class="company_txt">Company Name : {{$c_name[0]->name}} </span>
+<div style="text-align:center;"> <span class="company_txt">Company Name : {{$c_name=$c_name[0]->name}} </span>
 <div>
 
 <div class="panel_side_menu">
@@ -104,7 +104,7 @@
           <th>Deadline</th>
         </tr>
 @foreach($applications as $dt)
-        <tr>
+        <tr class='clickable-row'  data-href="{{Session::get('host_name')}}/applicants_details/{{$dt->cir_id}}/{{$c_name}}/{{$dt->job_title}}" style="cursor:pointer;font-size: 150%;height:90px;">
           <td>{{$dt->job_title}}</td>
           <td>{{$dt->numOf}}</td>
           <td>{{$dt->deadline}}</td>

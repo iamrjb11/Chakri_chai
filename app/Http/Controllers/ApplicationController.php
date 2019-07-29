@@ -32,9 +32,13 @@ class ApplicationController extends Controller
         return redirect()->back();
     }
     
-    public function create()
+    public function applicants_details($cir_id,$c_name,$job_title)
     {
-        //
+        //echo "cir id : ".$cir_id;
+        $c_id = Auth::user()->c_id;
+
+        $applicants_dtls = DB::select("SELECT * FROM applications INNER JOIN users on applications.u_id=users.id where cir_id='$cir_id' and applications.c_id='$c_id' ");
+        return view('applicants_details',array('c_name'=>$c_name,'job_title'=>$job_title,'applicants_dtls'=>$applicants_dtls));
     }
 
     /**

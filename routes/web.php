@@ -43,6 +43,7 @@ Route::get('/circular_details/{cir_id}','CircularController@circular_details')->
 
 //ApplicationController
 Route::get('/apply/{cir_id}','ApplicationController@apply')->middleware('auth.apply');
+Route::get('/applicants_details/{cir_id}/{c_name}/{j_title}','ApplicationController@applicants_details')->middleware('auth');
 
 
 //POST METHODS

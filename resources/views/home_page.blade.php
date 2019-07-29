@@ -22,7 +22,7 @@ include "../resources/views/templates/image_slide.php"; ?>
   <tbody>
   @foreach($circulars as $dt)
   
-  <tr class='clickable-row'  data-href="{{Session::get('host_name')}}/circular_details/{{$dt->cir_id}}" style="cursor:pointer;font-size: 150%;height:100px;" >
+  <tr class='clickable-row'  data-href="{{Session::get('host_name')}}/circular_details/{{$dt->cir_id}}" style="cursor:pointer;font-size: 150%;height:90px;" >
 
 
 
