@@ -53,10 +53,9 @@ class CompanyController extends Controller
     }
     public function create_company(Request $request){
         
-
+        echo "INNN";
         $c_name = $request->input('c_name');
-        $u_email = $request->input('u_email');
-        $u_password = $request->input('u_password');
+        $u_email = Auth::user()->email;
         //echo $c_name."<br> ".$u_email."<br> ".$u_password;
 
         DB::insert("insert into companies (name) values('$c_name') ");
@@ -72,7 +71,7 @@ class CompanyController extends Controller
             
             //return back()->with('success','Image Upload successfully');   
             
-            return redirect('/register');
+            return redirect()->back();
         }
         else {
             return "Error!";

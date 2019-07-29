@@ -2,9 +2,9 @@
 
 
 @section('content')
-<div style="text-align:center;"> <span class="company_txt">Company Name : {{$c_name=$c_name[0]->name}} </span>
-<div>
 
+<div>
+<div > <span class="company_txt">Company Name : {{$c_name=$c_name[0]->name}} </span>
 <div class="panel_side_menu">
 <ul class="nav flex-column">
   <li class="active" ><a  id="cl" class="atag" data-toggle="pill" href="#home">Post Circular</a></li>
@@ -21,8 +21,8 @@
 
 <div class="tab-content" >
 <div id="home" class="tab-pane fade in active">
-  <div style="float:left;padding-left:3%">
-    <h3>Create a job circular :</h3>
+  <div style="float:left;padding-left:10%">
+    <h3>Create a job circular </h3>
     <form  enctype="multipart/form-data" 
     @if($circular_id > 0)
       method="get"
@@ -72,7 +72,7 @@
     </form>
   </div>
 
-  <div style="float:right;padding-right:10%;"><h3>Circular Lists :</h3>
+  <div style="float:right;padding-right:7%;"><h3>Circular Lists </h3>
     <table class="table table-striped">
         <tr>
           <th>Job Title</th>
@@ -101,8 +101,8 @@
 </div>
 
   <div id="applicants" class="tab-pane fade">
-    <div style="float:left;padding-left:22%">
-      <h3>Applicants List : </h3>
+    <div style="float:left;padding-left:10%">
+      <h3>Applicants List </h3>
       <table class="table table-striped">
         <tr>
           <th>Job Title</th>
