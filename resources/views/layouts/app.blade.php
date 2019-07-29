@@ -70,7 +70,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/panel"
+                                    <a class="dropdown-item" href="/company_panel"
                                        onclick="event.preventDefault();
                                                      document.getElementById('panel-form').submit();">
                                         Panel
@@ -84,7 +84,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                    <form id="panel-form" action="/panel" method="POST" style="display: none;">
+                                    <form id="panel-form" action="/company_panel" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>

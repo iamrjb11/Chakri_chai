@@ -12,7 +12,7 @@
   <li><a class="atag"  data-toggle="pill" href="#edit">Edit Profile</a></li
 
   @if(Auth::user()->c_id)
-  <li><a  class="atag"  href="{{Session::get('host_name')}}/panel">Company Panel</a></li>
+  <li><a  class="atag"  href="{{Session::get('host_name')}}/company_panel">Company Panel</a></li>
   @else
   @endif
 </ul>
@@ -27,7 +27,7 @@
   <div id="home" class="tab-pane fade in active"><br><br>
     <div style="float:left;padding-left:10%">
       <h3>Upload your new CV :</h3>
-      <form method="post" action="/upload_cv" enctype="multipart/form-data">
+      <form method="post" action="{{ route('upload') }}" enctype="multipart/form-data">
       @csrf
         <input type="file" class="form-control" name="my_cv">
         <input type="submit" class="btn btn-success" value="Upload" style="width:100%">

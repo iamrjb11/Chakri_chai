@@ -1,8 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\User;
 
+
+use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // to use Database (DB::select("query"))
+use Illuminate\Support\Facades\Input; //to use this Input::get('tag')
+use Illuminate\Support\Facades\Redirect; // to use this Redirect::to('url')
+use App\Application;
+use Auth;
+
 
 class HomeController extends Controller
 {
@@ -13,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -21,8 +30,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    
+    public function index(){
+        $host_url=url()->current();
+        //echo $host_url;
+            
+        Session::put('host_name',$host_url);
+        //echo Session::get('host_name');
+        Session::put('header_code','1');
+        $circulars = DB::select("select circulars.id as cir_id,name,job_title,job_location,deadline from circulars inner join companies on circulars.c_id=companies.id  order by circulars.id DESC ");
+        //$circulars=null;
+        //echo"<pre>";
+        //print_r($circulars);
+        return view('home_page',array('circulars'=>$circulars));
     }
+    
 }

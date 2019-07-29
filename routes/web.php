@@ -23,38 +23,48 @@ Route::get('/admin',function(){
 //     Session::put('header_code','1');
 //     return view('home');
 // });
-Route::get('/','myController@home');
-Route::get('/signup', function () {
-    //echo Session::get('host_name');
-    Session::put('header_code','2');
-    return view('sing_up');
-});
-Route::get('/r', function () {
-    //echo Session::get('host_name');
-    Session::put('header_code','3');
-    return view('welcome');
-});
-Route::post('/panel','myController@company_panel')->middleware(['auth','auth.company']);;
+//HomeController
+Route::get('/','HomeController@index');
 
-Route::get('/panel','myController@company_panel')->middleware(['auth','auth.company']);;
-Route::get('/user_panel','myController@user_panel')->middleware('auth');;
+//CompanyController
+Route::post('/company_panel','CompanyController@company_panel')->middleware(['auth','auth.company']);
+Route::get('/company_panel','CompanyController@company_panel')->middleware(['auth','auth.company']);
 
-Route::get('/delete_circular/{cir_id}','myController@delete_circular');
-Route::get('/edit_circular/{cir_id}','myController@edit_circular');
-Route::get('/circular_details/{cir_id}','myController@circular_details')->middleware('auth');
-Route::get('/apply/{cir_id}','myController@apply')->middleware('auth.apply');
+//myController
+Route::get('/user_panel','myController@user_panel')->middleware('auth');
+Route::post('/upload_cv','myController@upload_cv')->name('upload'); //name means set route name for calling
+
+//CircularController
+Route::post('/create_circular','CircularController@create_circular');
+Route::get('/update_circular/{cir_id}','CircularController@update_circular');
+Route::get('/delete_circular/{cir_id}','CircularController@delete_circular');
+Route::get('/edit_circular/{cir_id}','CircularController@edit_circular');
+Route::get('/circular_details/{cir_id}','CircularController@circular_details')->middleware('auth');
+
+//ApplicationController
+Route::get('/apply/{cir_id}','ApplicationController@apply')->middleware('auth.apply');
 
 
 //POST METHODS
-Route::post('/upload_cv','myController@upload_cv');
 Route::post('/login_user','myController@login_user');
 Route::post('/login_company','myController@login_company');
 
 Route::post('/signup_user','myController@signup_user');
 Route::post('/signup_company','myController@signup_company');
-Route::post('/create_circular','myController@create_circular');
-Route::get('/update_circular/{cir_id}','myController@update_circular');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Route::get('/signup', function () {
+//     //echo Session::get('host_name');
+//     Session::put('header_code','2');
+//     return view('sing_up');
+// });
+// Route::get('/r', function () {
+//     //echo Session::get('host_name');
+//     Session::put('header_code','3');
+//     return view('welcome');
+// });
