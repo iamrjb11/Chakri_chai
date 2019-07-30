@@ -15,6 +15,7 @@ include "../resources/views/templates/image_slide.php"; ?>
     <td>Job Title</td>
     <td>Conpany Name</td>
     <td>Location</td>
+    <td>Experience</td>
     <td>Deadline</td>
   
   </tr>
@@ -29,6 +30,7 @@ include "../resources/views/templates/image_slide.php"; ?>
     <td>{{$dt->job_title}}</td>
     <td>{{$dt->name}}</td>
     <td>{{$dt->job_location}}</td>
+    <td>{{$dt->job_experience}}</td>
     <td>{{$dt->deadline}}</td>
   
   </tr>

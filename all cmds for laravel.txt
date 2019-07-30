@@ -43,5 +43,18 @@ DB_DATABASE=db_chakri_chai
 DB_USERNAME=root
 DB_PASSWORD=
 
+-chakri chai heroku db-
+DB_CONNECTION=pgsql
+DB_HOST=ec2-174-129-226-234.compute-1.amazonaws.com
+DB_PORT=5432
+DB_DATABASE=d4rogcaejsee8j
+DB_USERNAME=eievaqtsuiwxmc
+DB_PASSWORD=4ae2ab147263662458d17633a79b38b54369c521c017a51b3c5c4964009c5fe8
 
+SELECT job_title,deadline,cir_id,COUNT(cir_id) as numOf FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='0' GROUP BY numOf;
+
+#How to reset heroju postgresql database
+1. heroku restart
+2. heroku pg:reset DATABASE (it ask something to u then u write app name like chakrichai
+3.then heroku run php artisan migrate and heroku run php artisan db:seed
 

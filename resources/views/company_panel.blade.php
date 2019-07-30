@@ -38,19 +38,36 @@
         @endif
         
         ><br>
+        <input type="text" class="form-control" name="job_vacancy" placeholder="Job Vacancy" required
+        @if($circular_id > 0)
+        value="{{$edit_data[0]->job_vacancy}}"
+        @endif
+        
+        ><br>
         <input type="text" class="form-control" name="salary" placeholder="Salary" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_salary}}"
         @endif
         ><br>
+        <input type="text" class="form-control" name="experience" placeholder="Experience" required
+        @if($circular_id > 0)
+        value="{{$edit_data[0]->job_experience}}"
+        @endif
+        ><br>
         <textarea  rows="4" cols="50" class="form-control" name="job_description"
          placeholder="Job Description" required>@if($circular_id > 0){{$edit_data[0]->job_description}}
         @endif</textarea><br>
-        <textarea  rows="4" cols="50" class="form-control" name="location" 
-        placeholder="Location" required>@if($circular_id > 0){{$edit_data[0]->job_location}}
+
+        <textarea  rows="4" cols="50" class="form-control" name="educational_info"
+         placeholder="Educational Requirements" required>@if($circular_id > 0){{$edit_data[0]->educational_info}}
+        @endif</textarea><br>
+
+        <input type="text" class="form-control" name="location" placeholder="Location" required
+        @if($circular_id > 0)
+        value="{{$edit_data[0]->job_location}}"
         @endif
-        </textarea><br>
-        
+        ><br>
+
         <input type="text" class="form-control" name="country" placeholder="Country" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_country}}"

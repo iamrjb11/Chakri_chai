@@ -26,13 +26,16 @@ class CircularController extends Controller
         $c_id = Auth::user()->c_id;
         
         $job_title = $request->input('job_title');
+        $job_vacancy = $request->input('job_vacancy');
         $salary = $request->input('salary');
+        $experience = $request->input('experience');
         $job_description = $request->input('job_description');
+        $educational_info = $request->input('educational_info');
         $location = $request->input('location');
         $country = $request->input('country');
         $deadline = $request->input('deadline');
 
-        DB::insert("insert into circulars (c_id,job_title,job_description,job_salary,job_location,job_country,deadline,visibility) values(?,?,?,?,?,?,?,?)",[$c_id,$job_title,$job_description,$salary,$location,$country,$deadline,'1'] );
+        DB::insert("insert into circulars (c_id,job_title,job_vacancy,job_description,educational_info,job_salary,job_experience,job_location,job_country,deadline,visibility) values(?,?,?,?,?,?,?,?,?,?,?)",[$c_id,$job_title,$job_vacancy,$job_description,$educational_info,$salary,$experience,$location,$country,$deadline,'1'] );
         //return back()->with('success','Image Upload successfully');   
         
         return redirect('/company_panel');
@@ -65,16 +68,19 @@ class CircularController extends Controller
 
     public function update_circular(Request $request,$cir_id){
 
-        echo "Edit : ".$request->job_title;
+        //echo "Edit : ".$request->job_title;
         
-        $job_title = $request->job_title;
+        $job_title = $request->job_title;  
+        $job_vacancy = $request->job_vacancy;
+        $educational_info = $request->educational_info; 
+        $experience = $request->experience;
         $salary = $request->salary;
         $job_description = $request->job_description;
         $location = $request->location;
         $country = $request->country;
         $deadline = $request->deadline;
 
-        DB::update("update  circulars set job_title=?,job_description=?,job_salary=?,job_location=?,job_country=?,deadline=? where id=?",[$job_title,$job_description,$salary,$location,$country,$deadline,$cir_id] );
+        DB::update("update  circulars set job_title=?,job_vacancy=?,job_description=?,educational_info=?,job_salary=?,job_experience=?,job_location=?,job_country=?,deadline=? where id=?",[$job_title,$job_vacancy,$job_description,$educational_info,$salary,$experience,$location,$country,$deadline,$cir_id] );
         //return back()->with('success','Image Upload successfully');   
         Session::put('header_code','3');
         return redirect('/company_panel');
@@ -86,7 +92,7 @@ class CircularController extends Controller
         
         $u_id = Auth::user()->id;
 
-        $details = DB::select("select circulars.id as cir_id,companies.id as c_id,job_title,name,job_description,job_location,job_country,job_salary,deadline from circulars left join companies on circulars.c_id=companies.id where circulars.id='$cir_id' ");
+        $details = DB::select("select circulars.id as cir_id,companies.id as c_id,job_title,job_vacancy,job_experience,name,educational_info,job_description,job_location,job_country,job_salary,deadline from circulars left join companies on circulars.c_id=companies.id where circulars.id='$cir_id' ");
         
         $check = DB::select("select * from applications where cir_id=? and u_id=?",[$cir_id,$u_id]);
         if($check)

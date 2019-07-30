@@ -17,7 +17,10 @@ class CreateCircularsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('c_id')->unsigned;
             $table->string('job_title');
+            $table->string('job_vacancy');
             $table->string('job_description');
+            $table->string('educational_info');
+            $table->string('job_experience');
             $table->string('job_salary');
             $table->string('job_location');
             $table->string('job_country');
