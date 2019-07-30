@@ -18,6 +18,15 @@
     <h3>Educational Requirements</h3>
     <?php $details[0]->educational_info = nl2br($details[0]->educational_info) ?> 
     <div class="pad"><?php echo $details[0]->educational_info; ?></div><br><br>
+    @if($details[0]->additional_requirements)
+    <h3>Additional Requirements</h3>
+    <?php $details[0]->additional_requirements = nl2br($details[0]->additional_requirements) ?> 
+    <div class="pad"><?php echo $details[0]->additional_requirements; ?></div><br><br>
+    @endif
+    
+    <h3>Experience </h3>
+    <?php $details[0]->job_experience = nl2br($details[0]->job_experience) ?> 
+    <div class="pad"><?php echo $details[0]->job_experience; ?></div><br><br>
 
     <h3>Salary</h3> 
     <div class="pad">{{ $details[0]->job_salary }}</div><br><br>

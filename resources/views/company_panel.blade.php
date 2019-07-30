@@ -32,47 +32,62 @@
       action="/create_circular"
     @endif
      class="form-horizontal col-sm-14"  >
+        <label for=""><span class="redMark">*</span>Job Title :</label>
         <input type="text" class="form-control" name="job_title" placeholder="Job Title" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_title}}"
         @endif
         
         ><br>
-        <input type="text" class="form-control" name="job_vacancy" placeholder="Job Vacancy" required
+        <label for=""><span class="redMark">*</span>Vacancy :</label>
+        <input type="text" class="form-control" name="job_vacancy" placeholder="Vacancy" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_vacancy}}"
         @endif
         
         ><br>
+        <label for=""><span class="redMark">*</span>Salary :</label>
         <input type="text" class="form-control" name="salary" placeholder="Salary" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_salary}}"
         @endif
         ><br>
+        
+        <label for=""><span class="redMark">*</span>Job Description :</label>
+        <textarea  rows="4" cols="50" class="form-control" name="job_description"
+         placeholder="Job Description" required>@if($circular_id > 0){{$edit_data[0]->job_description}}
+        @endif</textarea><br>
+        
+        <label for=""><span class="redMark">*</span>Educational Requirements :</label>
+        <textarea  rows="4" cols="50" class="form-control" name="educational_info"
+         placeholder="Educational Requirements" required>@if($circular_id > 0){{$edit_data[0]->educational_info}}
+        @endif</textarea><br>
+        
+        <label for=""><span class="redMark">*</span>Experience :</label>
         <input type="text" class="form-control" name="experience" placeholder="Experience" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_experience}}"
         @endif
         ><br>
-        <textarea  rows="4" cols="50" class="form-control" name="job_description"
-         placeholder="Job Description" required>@if($circular_id > 0){{$edit_data[0]->job_description}}
+        <label for="">Additional Requirements :</label>
+        <textarea  rows="4" cols="50" class="form-control" name="additional_requirements"
+         placeholder="Additional Requirements" >@if($circular_id > 0){{$edit_data[0]->additional_requirements}}
         @endif</textarea><br>
-
-        <textarea  rows="4" cols="50" class="form-control" name="educational_info"
-         placeholder="Educational Requirements" required>@if($circular_id > 0){{$edit_data[0]->educational_info}}
-        @endif</textarea><br>
-
+        
+        <label for=""><span class="redMark">*</span>Location :</label>
         <input type="text" class="form-control" name="location" placeholder="Location" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_location}}"
         @endif
         ><br>
-
+        
+        <label for=""><span class="redMark">*</span>Country :</label>
         <input type="text" class="form-control" name="country" placeholder="Country" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->job_country}}"
         @endif
         ><br>
+        <label for=""><span class="redMark">*</span>Deadline :</label>
         <input type="text" class="form-control" name="deadline" placeholder="Deadline" required
         @if($circular_id > 0)
         value="{{$edit_data[0]->deadline}}"

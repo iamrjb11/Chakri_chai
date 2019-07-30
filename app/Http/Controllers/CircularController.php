@@ -29,13 +29,14 @@ class CircularController extends Controller
         $job_vacancy = $request->input('job_vacancy');
         $salary = $request->input('salary');
         $experience = $request->input('experience');
+        $additional_requirements = $request->input('additional_requirements');
         $job_description = $request->input('job_description');
         $educational_info = $request->input('educational_info');
         $location = $request->input('location');
         $country = $request->input('country');
         $deadline = $request->input('deadline');
 
-        DB::insert("insert into circulars (c_id,job_title,job_vacancy,job_description,educational_info,job_salary,job_experience,job_location,job_country,deadline,visibility) values(?,?,?,?,?,?,?,?,?,?,?)",[$c_id,$job_title,$job_vacancy,$job_description,$educational_info,$salary,$experience,$location,$country,$deadline,'1'] );
+        DB::insert("insert into circulars (c_id,job_title,job_vacancy,job_description,educational_info,job_salary,job_experience,additional_requirements,job_location,job_country,deadline,visibility) values(?,?,?,?,?,?,?,?,?,?,?,?)",[$c_id,$job_title,$job_vacancy,$job_description,$educational_info,$salary,$experience,$additional_requirements,$location,$country,$deadline,'1'] );
         //return back()->with('success','Image Upload successfully');   
         
         return redirect('/company_panel');
@@ -59,7 +60,7 @@ class CircularController extends Controller
         $c_name = DB::select("select name from companies where id='$c_id' ");
         $circulars = DB::select("select * from circulars where c_id='$c_id' order by id DESC ");
         $edit_data = DB::select("select * from circulars where id='$cir_id'  ");
-        $applications = DB::select("SELECT job_title,deadline,cir_id,COUNT(cir_id) as numOf FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='$c_id' GROUP BY applications.cir_id,job_title,deadline ");
+        $applications = DB::select("SELECT job_title,deadline,cir_id,COUNT(cir_id) as numof FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='$c_id' GROUP BY applications.cir_id,job_title,deadline ");
         
         return view('company_panel',array('circular_id'=>$cir_id,'circulars'=>$circulars,'c_name'=>$c_name,'edit_data'=>$edit_data,'applications'=>$applications ) );  ;
         // foreach ($array as $arr) {
@@ -75,13 +76,14 @@ class CircularController extends Controller
         $job_vacancy = $request->job_vacancy;
         $educational_info = $request->educational_info; 
         $experience = $request->experience;
+        $additional_requirements = $request->additional_requirements;
         $salary = $request->salary;
         $job_description = $request->job_description;
         $location = $request->location;
         $country = $request->country;
         $deadline = $request->deadline;
 
-        DB::update("update  circulars set job_title=?,job_vacancy=?,job_description=?,educational_info=?,job_salary=?,job_experience=?,job_location=?,job_country=?,deadline=? where id=?",[$job_title,$job_vacancy,$job_description,$educational_info,$salary,$experience,$location,$country,$deadline,$cir_id] );
+        DB::update("update  circulars set job_title=?,job_vacancy=?,job_description=?,educational_info=?,job_salary=?,job_experience=?,additional_requirements=?,job_location=?,job_country=?,deadline=? where id=?",[$job_title,$job_vacancy,$job_description,$educational_info,$salary,$experience,$additional_requirements,$location,$country,$deadline,$cir_id] );
         //return back()->with('success','Image Upload successfully');   
         Session::put('header_code','3');
         return redirect('/company_panel');
@@ -93,7 +95,7 @@ class CircularController extends Controller
         
         $u_id = Auth::user()->id;
 
-        $details = DB::select("select circulars.id as cir_id,companies.id as c_id,job_title,job_vacancy,job_experience,name,educational_info,job_description,job_location,job_country,job_salary,deadline from circulars left join companies on circulars.c_id=companies.id where circulars.id='$cir_id' ");
+        $details = DB::select("select circulars.id as cir_id,companies.id as c_id,job_title,job_vacancy,job_experience,name,additional_requirements,educational_info,job_description,job_location,job_country,job_salary,deadline from circulars left join companies on circulars.c_id=companies.id where circulars.id='$cir_id' ");
         
         $check = DB::select("select * from applications where cir_id=? and u_id=?",[$cir_id,$u_id]);
         if($check)
