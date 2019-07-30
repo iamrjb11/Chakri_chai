@@ -24,7 +24,7 @@ class myController extends Controller
 
             DB::update("update users set filename='$file_name' where id='$u_id' ");
             
-            return redirect('/user_panel');
+            return redirect()->back();
         }
         
 
