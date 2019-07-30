@@ -30,7 +30,7 @@ class ApplicationController extends Controller
         $apply->cir_id = $cir_id;
         $apply->u_id = $u_id;
         $apply->save();
-        return redirect()->back();
+        return redirect('/');
     }
     
     public function applicants_details($cir_id,$c_name,$job_title)

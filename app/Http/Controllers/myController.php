@@ -68,7 +68,11 @@ class myController extends Controller
     public function user_panel(){
         
         $u_id = Auth::user()->id;
-        $u_name = Auth::user()->fullname;
+        $u_name = Auth::user()->fullname; 
+        $file_name = DB::select("select filename from users where id='$u_id' ");
+        $file = $file_name[0]->filename;
+        return view('user_panel',array('u_name'=>$u_name,'file'=>$file) );
+        
         //echo Auth::user()->fullname;
         // $c_id =  DB::select("select c_id from users where id='$u_id' ");
         // $c_id = $c_id[0]->c_id;
@@ -87,10 +91,7 @@ class myController extends Controller
         //use array function
         //echo gettype($circulars);
         //return view('company_panel',array('cir_id'=>0,'circulars'=>$circulars,'c_name'=>$c_name) );
-        $file_name = DB::select("select filename from users where id='$u_id' ");
-        $file = $file_name[0]->filename;
-        return view('user_panel',array('u_name'=>$u_name,'file'=>$file) );
-        //use compact function
+       //use compact function
         //return view('company_panel',);
     }
     
