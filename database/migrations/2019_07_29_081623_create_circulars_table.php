@@ -20,8 +20,8 @@ class CreateCircularsTable extends Migration
             $table->string('job_vacancy');
             $table->longText('job_description');
             $table->longText('educational_info');
-            $table->longText('job_experience');
-            $table->string('additional_requirements')->nullable();
+            $table->string('job_experience');
+            $table->longText('additional_requirements')->nullable();
             $table->string('job_salary');
             $table->string('job_location');
             $table->string('job_country');
