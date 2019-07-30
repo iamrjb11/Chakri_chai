@@ -58,7 +58,7 @@ class CircularController extends Controller
         $c_name = DB::select("select name from companies where id='$c_id' ");
         $circulars = DB::select("select * from circulars where c_id='$c_id' order by id DESC ");
         $edit_data = DB::select("select * from circulars where id='$cir_id'  ");
-        $applications = DB::select("SELECT job_title,deadline,cir_id,COUNT(cir_id) as numOf FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='$c_id' GROUP BY cir_id");
+        $applications = DB::select("SELECT job_title,deadline,cir_id,COUNT(cir_id) as numOf FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='$c_id' GROUP BY applications.cir_id,job_title,deadline ");
         
         return view('company_panel',array('circular_id'=>$cir_id,'circulars'=>$circulars,'c_name'=>$c_name,'edit_data'=>$edit_data,'applications'=>$applications ) );  ;
         // foreach ($array as $arr) {
