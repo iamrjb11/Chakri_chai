@@ -13,7 +13,7 @@ include "../resources/views/templates/image_slide.php"; ?>
   <thead>
   <tr>
     <td>Job Title</td>
-    <td>Conpany Name</td>
+    <td>Company Name</td>
     <td>Location</td>
     <td>Experience</td>
     <td>Deadline</td>
