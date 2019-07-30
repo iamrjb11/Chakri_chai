@@ -48,6 +48,7 @@ class CircularController extends Controller
             DB::update("update circulars set visibility='1' where id='$cir_id'  ");
         return redirect('/company_panel');
     }
+    
    
     public function edit_circular($cir_id){ 
         $u_id = Auth::user()->id;
