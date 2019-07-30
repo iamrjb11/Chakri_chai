@@ -32,7 +32,7 @@ class CircularController extends Controller
         $country = $request->input('country');
         $deadline = $request->input('deadline');
 
-        DB::insert("insert into circulars (c_id,job_title,job_description,job_salary,job_location,job_country,deadline) values(?,?,?,?,?,?,?)",[$c_id,$job_title,$job_description,$salary,$location,$country,$deadline] );
+        DB::insert("insert into circulars (c_id,job_title,job_description,job_salary,job_location,job_country,deadline,visibility) values(?,?,?,?,?,?,?,?)",[$c_id,$job_title,$job_description,$salary,$location,$country,$deadline,'1'] );
         //return back()->with('success','Image Upload successfully');   
         
         return redirect('/company_panel');

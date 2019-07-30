@@ -38,10 +38,15 @@ class CompanyController extends Controller
         
         $c_name = DB::select("select name from companies where id='$c_id' ");
         $circulars = DB::select("select * from circulars where c_id='$c_id' order by id DESC ");
-        $applications = DB::select("SELECT job_title,deadline,cir_id,COUNT(cir_id) as numOf FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='$c_id' GROUP BY cir_id");
+        $applications = DB::select("SELECT job_title,deadline,cir_id,COUNT(cir_id) as numOf FROM applications INNER JOIN circulars on applications.cir_id=circulars.id where applications.c_id='$c_id' GROUP BY applications.cir_id,job_title,deadline ");
         //$data = compact("circulars","c_name");
         //$data=array('circulars'=>$circulars,'c_name'=>$c_name);
-        //print_r($data);
+        // echo "<pre>";
+        // print_r($applications);
+        //if($applications)
+        //echo "Has";
+
+        //else $applications=null;
 
         //echo "<br>Name : ".$c_name[0]->c_name;
         //use array function

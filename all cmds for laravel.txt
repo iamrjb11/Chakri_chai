@@ -15,3 +15,33 @@ make seed : php artisan db:seed
 
 clear cache : php artisan cache:clear
 link up public folder to storage : php artisan storage:link //The [public/storage] directory has been linked.
+
+Heroku
+~~~~~~~~~~~~~~
+#Linkup a postgresql to heroku app
+1. go heroku and click your app
+2.then slect resource and click add ons (postgresql)
+3. then go to app setting and config to app with db infos and APP_KEY,APP_DEBUG etc
+
+#Connect database:
+1.go to directory and run cmd
+2. heroku pg:psql (connected to database)
+
+#U can run laravel cmd :
+1. heroku run php artisan migrate
+2. heroku run php artisan db:seed
+
+#For upload project to heroku
+1.go heroku and select that app
+2. select app->deploy
+
+#Default laravel DB setup
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_chakri_chai
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+
