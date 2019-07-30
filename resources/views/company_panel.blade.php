@@ -129,7 +129,7 @@
 @foreach($applications as $dt)
         <tr class='clickable-row'  data-href="{{Session::get('host_name')}}/applicants_details/{{$dt->cir_id}}/{{$c_name}}/{{$dt->job_title}}" style="cursor:pointer;font-size: 150%;height:90px;">
           <td>{{$dt->job_title}}</td>
-          <td>{{$dt->numOf}}</td>
+          <td>{{$dt->numof}}</td>
           <td>{{$dt->deadline}}</td>
         </tr>
 @endforeach
