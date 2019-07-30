@@ -70,10 +70,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/') }}">Home</a>
                                     <a class="dropdown-item" href="/company_panel"
                                        onclick="event.preventDefault();
                                                      document.getElementById('panel-form').submit();">
-                                        Panel
+                                        My Panel
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
