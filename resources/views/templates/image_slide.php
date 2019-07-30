@@ -5,7 +5,7 @@
 
 <div class="w3-container">
   <h2>WELCOME TO CHAKRI CHAI WEBSITE</h2>
-  <p>Find your desire jobs here.Its very useful to students whose are searing jobs. </p>
+  <p>Find your desire jobs here. </p>
 </div>
 
 
